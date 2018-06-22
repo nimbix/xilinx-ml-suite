@@ -34,6 +34,7 @@ EXPOSE 443
 
 # helper in case someone runs sudo conda
 COPY conda /usr/bin/conda
+RUN ln -s /opt/anaconda2/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 
 # motd and AppDef
 COPY motd /etc/motd
