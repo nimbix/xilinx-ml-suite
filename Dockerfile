@@ -4,7 +4,7 @@ FROM ubuntu:xenial
 # into this Ubuntu one rather than use FROM continuumio/anaconda above
 WORKDIR /tmp
 ENV PATH=/opt/anaconda2/bin:${PATH}
-RUN apt-get update && apt-get -y install curl bzip2 && apt-get clean
+RUN apt-get update && apt-get -y install curl bzip2 git iputils-ping && apt-get clean
 RUN curl -O https://repo.anaconda.com/archive/Anaconda2-5.1.0-Linux-x86_64.sh && bash ./Anaconda2-5.1.0-Linux-x86_64.sh -b -p /opt/anaconda2 && rm -f Anaconda2-5.1.0-Linux-x86_64.sh && conda update -n base conda && conda clean -y --all
 
 # deploy the Anaconda EULA so that JARVICE prompts the end user to accept it,
