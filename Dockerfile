@@ -37,4 +37,7 @@ COPY conda /usr/bin/conda
 
 # motd and AppDef
 COPY motd /etc/motd
+COPY AppDef.json /etc/NAE/AppDef.json
+RUN curl --fail -X POST -d @/etc/NAE/AppDef.json https://api.jarvice.com/jarvice/validate
+
 
