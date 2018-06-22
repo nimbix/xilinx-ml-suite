@@ -1,13 +1,14 @@
 {
-    "name": "xilinx_ml_suite",
-    "description": "xilinx_ml_suite application",
-    "author": "jarvice",
+    "name": "Xilinx ML Suite",
+    "description": "Interactive desktop environment for FPGA machine learning development and testing using the Xilinx ML Suite - https://github.com/Xilinx/ml-suite",
+    "author": "Xilinx",
     "licensed": true,
     "classifications": [
-        "Uncategorized"
+        "Software Development/Software Testing",
+        "Machine Learning"
     ],
     "machines": [
-        "*"
+        "nx5"
     ],
     "vault-types": [
         "FILE",
@@ -16,58 +17,12 @@
         "OBJECT"
     ],
     "commands": {
-        "Batch": {
-            "path": "/bin/bash",
-            "interactive": false,
-            "name": "Batch",
-            "description": "Run a batch command using /bin/bash.  The output may be monitored directly in your web browser.",
-            "parameters": {
-                "-l": {
-                    "name": "-l",
-                    "description": "-l",
-                    "type": "CONST",
-                    "value": "-l",
-                    "positional": true,
-                    "required": true
-                },
-                "-c": {
-                    "name": "-c",
-                    "description": "-c",
-                    "type": "CONST",
-                    "value": "-c",
-                    "positional": true,
-                    "required": true
-                },
-                "command": {
-                    "name": "Command",
-                    "description": "Command to run",
-                    "type": "STR",
-                    "positional": true,
-                    "required": true
-                }
-            }
-        },
-        "Server": {
+        "Desktop": {
             "path": "/sbin/init",
             "interactive": true,
-            "name": "Server",
-            "description": "Launch a session with all boot services, including SSH (if installed).  Connection address and credentials will appear in your web browser once available.",
+            "name": "Desktop",
+            "description": "Launch an interactive session and connect directly in your browser.  Connection address and credentials for SSH will also appear in your web browser once available.",
             "parameters": {}
-        },
-        "GUI": {
-            "path": "/usr/local/bin/nimbix_desktop",
-            "interactive": true,
-            "name": "GUI",
-            "description": "Run a GUI command, and connect interactively directly from your web browser (requires Nimbix Desktop in image).",
-            "parameters": {
-                "command": {
-                    "name": "Command",
-                    "description": "Command to run",
-                    "type": "STR",
-                    "positional": true,
-                    "required": true
-                }
-            }
         }
     },
     "image": {
