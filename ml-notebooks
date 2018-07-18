@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-sudo service sshd start
+sudo service ssh start
 sudo redir --lport=443 --cport=8443 --caddr=localhost &
 cd ~/ml-suite
 conda activate ml-suite

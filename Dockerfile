@@ -19,18 +19,20 @@ RUN mkdir -p /etc/NAE && cp -f /opt/anaconda2/LICENSE.txt /etc/NAE/license.txt
 # see: https://github.com/Xilinx/ml-suite/blob/v1.0-ea/docs/tutorials/start-anaconda.md
 RUN conda create -y --name ml-suite python=2.7 jupyter caffe pydot pydot-ng graphviz -c conda-forge && conda clean -y --all
 
-# apply image-common - also preserves ${PATH} set above
-RUN curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/nimbix/image-common/master/install-nimbix.sh | bash
+# apply image-common - also preserves ${PATH} set above; note that we use
+# Nimbix Desktop because various modules depend on underlying graphics so's
+RUN curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/nimbix/image-common/master/install-nimbix.sh | bash -s -- --setup-nimbix-desktop
 
 # expose ports for local JARVICE emulation
 EXPOSE 22
 EXPOSE 443
+EXPOSE 5901
 
 # clone ml-suite from Xilinx to /usr/src, then link it into $HOME in skep
 WORKDIR /usr/src
 ENV XILINX_ML_SUITE_BRANCH master
 ENV XILINX_ML_SUITE_CLONE_TIMESTAMP "Wed Jul 18 15:49:55 UTC 2018"
-RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && chown -R nimbix:nimbix ml-suite
+RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && cd /usr/src/ml-suite/apps/yolo && make && cd /usr/src && chown -R nimbix:nimbix ml-suite
 RUN ln -s /usr/src/ml-suite /etc/skel/ml-suite
 WORKDIR /data
 
