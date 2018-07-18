@@ -3,7 +3,7 @@ cat <<EOF
 The Xilinx ML Suite git repository is cloned in ~/ml-suite
 
 For more information, please see:
-    https://github.com/Xilinx/ml-suite
+    https://github.com/Xilinx/ml-suite/tree/master/examples/classification
 
 - The ml-suite conda environment has already been set up activated
 - By using this environment you agree to the terms of the Anaconda EULA:
