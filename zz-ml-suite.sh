@@ -11,6 +11,5 @@ For more information, please see:
 
 EOF
 
-cd
-cd ml-suite
+source activate ml-suite
 
