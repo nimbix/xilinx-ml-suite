@@ -19,13 +19,11 @@ RUN mkdir -p /etc/NAE && cp -f /opt/anaconda2/LICENSE.txt /etc/NAE/license.txt
 # see: https://github.com/Xilinx/ml-suite/blob/v1.0-ea/docs/tutorials/start-anaconda.md
 RUN conda create -y --name ml-suite python=2.7 jupyter caffe pydot pydot-ng graphviz -c conda-forge && conda clean -y --all
 
-# clone into /etc/skel so that ${HOME} will get the tree on login
-# apply Nimbix desktop - also preserves ${PATH} set above
-RUN curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/nimbix/image-common/master/install-nimbix.sh | bash -s -- --setup-nimbix-desktop
+# apply image-common - also preserves ${PATH} set above
+RUN curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/nimbix/image-common/master/install-nimbix.sh | bash
 
 # expose ports for local JARVICE emulation
 EXPOSE 22
-EXPOSE 5901
 EXPOSE 443
 
 # clone ml-suite from Xilinx to /usr/src, then link it into $HOME in skep
