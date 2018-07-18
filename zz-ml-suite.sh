@@ -10,3 +10,6 @@ For more information, please see:
     /opt/anaconda2/LICENSE.txt
 
 EOF
+
+cd ~/ml-suite
+
