@@ -40,7 +40,7 @@ WORKDIR /data
 RUN ln -s /opt/anaconda2 ~/anaconda2 && bash /etc/skel/ml-suite/fix_caffe_opencv_symlink.sh && rm -f ~/anaconda2
 
 # motd and AppDef
-COPY motd /etc/motd
+COPY zz-ml-suite.sh /etc/profile.d/zz-ml-suite.sh
 COPY AppDef.json /etc/NAE/AppDef.json
 RUN curl --fail -X POST -d @/etc/NAE/AppDef.json https://api.jarvice.com/jarvice/validate
 
