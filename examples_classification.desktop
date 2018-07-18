@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Classification Examples
+Comment=
+Exec=xfce4-terminal
+Icon=utilities-terminal
+Path=/usr/src/ml-suite/examples/classification
+Terminal=false
+StartupNotify=false

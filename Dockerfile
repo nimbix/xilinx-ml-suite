@@ -42,5 +42,7 @@ RUN ln -s /opt/anaconda2 ~/anaconda2 && bash /etc/skel/ml-suite/fix_caffe_opencv
 # motd and AppDef
 COPY zz-ml-suite.sh /etc/profile.d/zz-ml-suite.sh
 COPY AppDef.json /etc/NAE/AppDef.json
+COPY examples_classification.desktop /etc/skel/Desktop
+RUN chmod +x /etc/skel/Desktop/examples_classification.desktop
 RUN curl --fail -X POST -d @/etc/NAE/AppDef.json https://api.jarvice.com/jarvice/validate
 

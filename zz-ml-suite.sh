@@ -13,3 +13,10 @@ EOF
 
 source activate ml-suite
 
+# symlink fix
+if [ "$PWD" = "/usr/src/ml-suite/examples/classification" ]; then
+    cd
+    cd ml-suite/examples/classification
+fi
+
+    
