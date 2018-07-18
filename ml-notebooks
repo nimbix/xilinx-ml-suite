@@ -1,0 +1,8 @@
+#!/bin/bash -l
+
+sudo service sshd start
+cd ~/ml-suite
+conda activate ml-suite
+source ./overlaybins/setup.sh nimbix
+exec jupyter notebook --notebook-dir=notebooks --no-browser --port=443 --certfile=/etc/JARVICE/cert.pem
+

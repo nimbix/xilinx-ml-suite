@@ -17,7 +17,7 @@ RUN mkdir -p /etc/NAE && cp -f /opt/anaconda2/LICENSE.txt /etc/NAE/license.txt
 
 # Create the ml-suite Anaconda Virtual Environment...
 # see: https://github.com/Xilinx/ml-suite/blob/v1.0-ea/docs/tutorials/start-anaconda.md
-RUN conda create -y --name ml-suite python=2.7 caffe pydot pydot-ng graphviz -c conda-forge && conda clean -y --all
+RUN conda create -y --name ml-suite python=2.7 jupyter caffe pydot pydot-ng graphviz -c conda-forge && conda clean -y --all
 
 # clone into /etc/skel so that ${HOME} will get the tree on login
 # apply Nimbix desktop - also preserves ${PATH} set above
@@ -32,17 +32,17 @@ EXPOSE 443
 WORKDIR /usr/src
 ENV XILINX_ML_SUITE_BRANCH master
 ENV XILINX_ML_SUITE_CLONE_TIMESTAMP "Wed Jul 18 15:49:55 UTC 2018"
-RUN git clone -b master https://github.com/Xilinx/ml-suite.git && chown -R nimbix:nimbix ml-suite
+RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && chown -R nimbix:nimbix ml-suite
 RUN ln -s /usr/src/ml-suite /etc/skel/ml-suite
 WORKDIR /data
 
 # Fix up - temporarily link in anaconda2 so we don't have to modify the script
 RUN ln -s /opt/anaconda2 ~/anaconda2 && bash /etc/skel/ml-suite/fix_caffe_opencv_symlink.sh && rm -f ~/anaconda2
 
-# motd and AppDef
-COPY zz-ml-suite.sh /etc/profile.d/zz-ml-suite.sh
+# motd and AppDef, URL override, and launcher for notebooks
+COPY motd /etc/motd
 COPY AppDef.json /etc/NAE/AppDef.json
-COPY examples_classification.desktop /etc/skel/Desktop/examples_classification.desktop
-RUN chmod +x /etc/skel/Desktop/examples_classification.desktop
+COPY url.txt /etc/NAE/url.txt
+COPY ml-notebooks /usr/local/bin/ml-notebooks
 RUN curl --fail -X POST -d @/etc/NAE/AppDef.json https://api.jarvice.com/jarvice/validate
 

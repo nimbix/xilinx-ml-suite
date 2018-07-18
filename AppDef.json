@@ -1,6 +1,6 @@
 {
     "name": "Xilinx ML Suite",
-    "description": "Interactive desktop environment for FPGA machine learning development and testing using the Xilinx ML Suite - https://github.com/Xilinx/ml-suite",
+    "description": "Interactive environment for FPGA machine learning development and testing using the Xilinx ML Suite - https://github.com/Xilinx/ml-suite",
     "author": "Xilinx",
     "licensed": true,
     "classifications": [
@@ -17,11 +17,11 @@
         "OBJECT"
     ],
     "commands": {
-        "Desktop": {
-            "path": "/sbin/init",
+        "Notebook": {
+            "path": "/usr/local/bin/ml-notebooks",
             "interactive": true,
-            "name": "Desktop",
-            "description": "Launch an interactive session and connect directly in your browser.  Connection address and credentials for SSH will also appear in your web browser once available.",
+            "name": "Notebook",
+            "description": "Launch an interactive Jupyter Notebook session and connect directly in your browser.  Connection address and credentials for SSH will also appear in your web browser once available.",
             "parameters": {}
         }
     },
