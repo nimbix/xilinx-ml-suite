@@ -11,5 +11,6 @@ For more information, please see:
 
 EOF
 
-cd ~/ml-suite
+cd
+cd ml-suite
 
