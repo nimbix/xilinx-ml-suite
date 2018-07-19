@@ -22,7 +22,7 @@ RUN conda create -y --name ml-suite python=2.7 jupyter caffe pydot pydot-ng grap
 WORKDIR /usr/src
 ENV XILINX_ML_SUITE_BRANCH master
 ENV XILINX_ML_SUITE_CLONE_TIMESTAMP "Wed Jul 18 15:49:55 UTC 2018"
-RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && make -C /usr/src/ml-suite/apps/yolo/nms && make && cd /usr/src && chown -R nimbix:nimbix ml-suite
+RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && make -C ml-suite/apps/yolo/nms && chown -R nimbix:nimbix ml-suite
 RUN ln -s /usr/src/ml-suite /etc/skel/ml-suite
 WORKDIR /data
 
