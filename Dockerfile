@@ -21,11 +21,15 @@ RUN mkdir -p /etc/NAE && cp -f /opt/anaconda2/LICENSE.txt /etc/NAE/license.txt
 # see: https://github.com/Xilinx/ml-suite/blob/v1.0-ea/docs/tutorials/start-anaconda.md
 RUN conda create -y --name ml-suite python=2.7 jupyter caffe pydot pydot-ng graphviz -c conda-forge && conda clean -y --all
 
+# install Git LFS
+RUN apt-get update && apt-get -y install software-properties-common && apt-add-repository -y ppa:git-core/ppa && curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | bash && apt-get install git-lfs && apt-get clean && git lfs install
+
+
 # clone ml-suite from Xilinx to /usr/src, then link it into $HOME in skep
 WORKDIR /usr/src
 ENV XILINX_ML_SUITE_BRANCH master
 ENV XILINX_ML_SUITE_CLONE_TIMESTAMP "Tue Jul 24 14:37:45 UTC 2018"
-RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && make -C ml-suite/apps/yolo/nms && chown -R nimbix:nimbix ml-suite
+RUN git clone -b ${XILINX_ML_SUITE_BRANCH} https://github.com/Xilinx/ml-suite.git && cd ml-suite && git lfs install --local && make -C apps/yolo/nms && cd .. && chown -R nimbix:nimbix ml-suite
 RUN ln -s /usr/src/ml-suite /etc/skel/ml-suite
 WORKDIR /data
 
