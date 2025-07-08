@@ -4,7 +4,7 @@
     "author": "Xilinx",
     "licensed": true,
     "classifications": [
-        "AI/DevelopmentTools"
+        "AI/Development Tools"
     ],
     "machines": [
         "nx5"
