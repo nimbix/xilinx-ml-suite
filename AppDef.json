@@ -4,8 +4,7 @@
     "author": "Xilinx",
     "licensed": true,
     "classifications": [
-        "Software Development/Software Testing",
-        "Machine Learning"
+        "AI/DevelopmentTools"
     ],
     "machines": [
         "nx5"
